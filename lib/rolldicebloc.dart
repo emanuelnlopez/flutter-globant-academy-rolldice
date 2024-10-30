@@ -1,44 +1,8 @@
-import 'dart:math';
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-enum DiceStatus { initial, processing, done }
-
-class DiceStates extends Equatable {
-  const DiceStates({
-    this.status = DiceStatus.initial,
-    this.currentSide = 1,
-  });
-
-  final DiceStatus status;
-  final int currentSide;
-
-  DiceStates copyWith({DiceStatus? stats, int? side}) {
-    return DiceStates(
-      status: stats ?? DiceStatus.initial,
-      currentSide: side ?? 1,
-    );
-  }
-
-  @override
-  List<Object?> get props => [status, currentSide];
-}
-
-class DiceBloc extends Bloc<DiceStatus, DiceStates> {
-  DiceBloc(super.initialState);
-
-  Future<void> randomize() async {
-    emit(state.copyWith(stats: DiceStatus.processing));
-
-    await Future.delayed(const Duration(seconds: 2));
-
-    final random = Random();
-
-    emit(state.copyWith(stats: DiceStatus.done, side: random.nextInt(6) + 1));
-  }
-}
+import 'bloc_logic/dicebloc.dart';
+import 'bloc_logic/dicebloc_state.dart';
 
 class RollDiceBloc extends StatelessWidget {
   const RollDiceBloc({super.key});
