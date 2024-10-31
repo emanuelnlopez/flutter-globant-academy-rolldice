@@ -13,7 +13,7 @@ class LoadingState extends NewsState {}
 class SuccessState extends NewsState {
   SuccessState(this.response);
 
-  List<NewsModel> response;
+  final List<NewsModel> response;
 
   @override
   List<Object?> get props => [response];
@@ -22,7 +22,7 @@ class SuccessState extends NewsState {
 class ErrorState extends NewsState {
   ErrorState(this.error);
 
-  Object? error;
+  final Object? error;
 
   @override
   List<Object?> get props => [error];
