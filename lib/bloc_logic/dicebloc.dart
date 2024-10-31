@@ -10,7 +10,7 @@ class DiceBloc extends Bloc<DiceStatus, DiceStates> {
   Future<void> randomize() async {
     emit(state.copyWith(stats: DiceStatus.processing));
 
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(milliseconds: 300));
 
     final random = Random();
 
