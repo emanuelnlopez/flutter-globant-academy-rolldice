@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:rolldice/rolldicebloc.dart';
+import 'package:rolldice/home.dart';
 
 class AppObserver extends BlocObserver {
   const AppObserver();
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const RollDiceBloc(),
+      home: const HomeScreen(),
     );
   }
 }
