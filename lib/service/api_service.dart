@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:rolldice/news_model.dart';
+import 'package:rolldice/model/news_model.dart';
 
 class ApiService {
   final dio = Dio();

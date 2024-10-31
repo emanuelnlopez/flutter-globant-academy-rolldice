@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:rolldice/news_model.dart';
+import 'package:rolldice/model/news_model.dart';
 
 class NewsState extends Equatable {
   @override
