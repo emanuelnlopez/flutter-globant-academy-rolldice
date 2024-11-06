@@ -1,6 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rolldice/home.dart';
+import 'package:rolldice/service/always_one_dice_service.dart';
+import 'package:rolldice/service/services.dart';
+
+final newsApiService = Provider<ApiService>((ref) => MemoryApiService());
+final diceService = Provider<DiceService>((ref) => AlwaysOneDiceService());
 
 class AppObserver extends BlocObserver {
   const AppObserver();
@@ -8,7 +14,7 @@ class AppObserver extends BlocObserver {
 
 void main() {
   Bloc.observer = const AppObserver();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
