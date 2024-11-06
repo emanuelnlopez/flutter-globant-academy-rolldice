@@ -2,13 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:rolldice/bloc_logic/news_events.dart';
 import 'package:rolldice/bloc_logic/news_state.dart';
 import 'package:rolldice/service/api_service.dart';
+import 'package:rolldice/service/dio_api_service.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc() : super(IdleState()) {
     on(fetchArticles);
   }
 
-  ApiService service = ApiService();
+  ApiService service = DioApiService();
 
   Future<void> fetchArticles(NewsEvent event, Emitter<NewsState> state) async {
     emit(LoadingState());
