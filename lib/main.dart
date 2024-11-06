@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rolldice/home.dart';
+import 'package:rolldice/service/services.dart';
 
 class AppObserver extends BlocObserver {
   const AppObserver();
@@ -8,7 +9,13 @@ class AppObserver extends BlocObserver {
 
 void main() {
   Bloc.observer = const AppObserver();
-  runApp(const MyApp());
+  runApp(
+    DependencyInjectionInheritedWidget(
+      diceService: TwentySlidesDiceService(),
+      newsApiService: HttpApiService(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -26,4 +33,23 @@ class MyApp extends StatelessWidget {
       home: const HomeScreen(),
     );
   }
+}
+
+class DependencyInjectionInheritedWidget extends InheritedWidget {
+  const DependencyInjectionInheritedWidget({
+    required this.diceService,
+    super.key,
+    required this.newsApiService,
+    required super.child,
+  });
+
+  static DependencyInjectionInheritedWidget of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<
+          DependencyInjectionInheritedWidget>()!;
+
+  final ApiService newsApiService;
+  final DiceService diceService;
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => false;
 }

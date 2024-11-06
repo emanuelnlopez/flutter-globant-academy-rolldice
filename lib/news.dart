@@ -3,19 +3,20 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rolldice/bloc_logic/news_events.dart';
 import 'package:rolldice/bloc_logic/news_state.dart';
 import 'package:rolldice/bloc_logic/newsbloc.dart';
+import 'package:rolldice/main.dart';
 import 'package:rolldice/model/news_model.dart';
-import 'package:rolldice/service/services.dart';
 
 class NewsScreen extends StatelessWidget {
   const NewsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final injector = DependencyInjectionInheritedWidget.of(context);
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => NewsBloc(service: DioApiService())..add(LoaderEvent()),
+          create: (context) => NewsBloc(service: injector.newsApiService)..add(LoaderEvent()),
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               switch (state) {
