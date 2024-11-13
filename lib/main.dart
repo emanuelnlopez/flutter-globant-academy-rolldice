@@ -1,3 +1,4 @@
+import 'package:accessibility_tools/accessibility_tools.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rolldice/home.dart';
@@ -17,6 +18,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) => AccessibilityTools(child: child),
+      // showSemanticsDebugger: true,
       title: 'Roll Dice',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

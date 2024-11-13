@@ -11,8 +11,8 @@ class NSlicesDiceService implements DiceService {
 
   @override
   Future<int> rollDice() async {
-    await Future.delayed(const Duration(milliseconds: 300));
-    
+    await Future.delayed(const Duration(seconds: 1));
+
     return random.nextInt(numberOfSlides) + 1;
   }
 }

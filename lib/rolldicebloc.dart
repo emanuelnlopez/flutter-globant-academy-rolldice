@@ -31,7 +31,9 @@ class RollDiceView extends StatelessWidget {
           BlocBuilder<DiceBloc, DiceStates>(
             builder: (context, state) {
               return state.status == DiceStatus.processing
-                  ? const Center(
+                  ? const SizedBox(
+                      height: 250,
+                      width: 250,
                       child: CircularProgressIndicator(),
                     )
                   : Container(

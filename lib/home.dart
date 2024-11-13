@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rolldice/accessibility/accessibility_index_screen.dart';
 import 'package:rolldice/news.dart';
 import 'package:rolldice/rolldicebloc.dart';
 
@@ -51,6 +52,28 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Icon(Icons.account_balance),
                     Text("Requests"),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            margin: const EdgeInsets.all(20),
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const AccessibilityIndexScreen(),
+                    ));
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Icon(Icons.accessibility),
+                    Text("Accessibility Examples"),
                   ],
                 ),
               ),
