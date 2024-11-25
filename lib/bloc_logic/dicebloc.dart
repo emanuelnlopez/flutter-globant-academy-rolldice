@@ -1,19 +1,18 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
+import 'package:rolldice/service/dice_service.dart';
 
 import 'dicebloc_state.dart';
 
 class DiceBloc extends Bloc<DiceStatus, DiceStates> {
-  DiceBloc(super.initialState);
+  DiceBloc({required this.service}) : super(const DiceStates());
+
+  final DiceService service;
 
   Future<void> randomize() async {
     emit(state.copyWith(stats: DiceStatus.processing));
 
-    await Future.delayed(const Duration(milliseconds: 300));
+    final side = await service.rollDice();
 
-    final random = Random();
-
-    emit(state.copyWith(stats: DiceStatus.done, side: random.nextInt(6) + 1));
+    emit(state.copyWith(stats: DiceStatus.done, side: side));
   }
 }
