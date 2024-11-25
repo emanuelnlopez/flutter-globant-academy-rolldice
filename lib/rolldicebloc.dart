@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rolldice/service/services.dart';
+import 'package:rolldice/main.dart';
 
 import 'bloc_logic/dicebloc.dart';
 import 'bloc_logic/dicebloc_state.dart';
@@ -10,8 +10,9 @@ class RollDiceBloc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final injector = DependencyInjectionInheritedWidget.of(context);
     return BlocProvider(
-      create: (context) => DiceBloc(service: SixSlidesDiceService()),
+      create: (context) => DiceBloc(service: injector.diceService),
       child: const RollDiceView(),
     );
   }
