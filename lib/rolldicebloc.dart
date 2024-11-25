@@ -11,7 +11,7 @@ class RollDiceBloc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DiceBloc(service: SixSlidesDiceService()),
+      create: (context) => DiceBloc(service: context.read<DiceService>()),
       child: const RollDiceView(),
     );
   }

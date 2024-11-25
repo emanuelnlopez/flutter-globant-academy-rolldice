@@ -15,7 +15,7 @@ class NewsScreen extends StatelessWidget {
       appBar: AppBar(),
       body: SafeArea(
         child: BlocProvider(
-          create: (context) => NewsBloc(service: DioApiService())..add(LoaderEvent()),
+          create: (context) => NewsBloc(service: context.read<ApiService>())..add(LoaderEvent()),
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               switch (state) {

@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rolldice/home.dart';
+import 'package:rolldice/service/services.dart';
 
 class AppObserver extends BlocObserver {
   const AppObserver();
@@ -8,7 +10,15 @@ class AppObserver extends BlocObserver {
 
 void main() {
   Bloc.observer = const AppObserver();
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        Provider<ApiService>(create: (_) => DioApiService()),
+        Provider<DiceService>(create: (_) => SixSlidesDiceService()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
