@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rolldice/service/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rolldice/main.dart';
 
 import 'bloc_logic/dicebloc.dart';
 import 'bloc_logic/dicebloc_state.dart';
 
-class RollDiceBloc extends StatelessWidget {
+class RollDiceBloc extends ConsumerWidget {
   const RollDiceBloc({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return BlocProvider(
-      create: (context) => DiceBloc(service: SixSlidesDiceService()),
+      create: (context) => DiceBloc(service: ref.read(diceService)),
       child: const RollDiceView(),
     );
   }
