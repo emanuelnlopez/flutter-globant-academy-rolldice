@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:rolldice/home.dart';
+import 'package:rolldice/service/services.dart';
 
 class AppObserver extends BlocObserver {
   const AppObserver();
@@ -8,6 +10,7 @@ class AppObserver extends BlocObserver {
 
 void main() {
   Bloc.observer = const AppObserver();
+  Injector.setupDependencies();
   runApp(const MyApp());
 }
 
@@ -25,5 +28,14 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
     );
+  }
+}
+
+class Injector {
+  static final instance = GetIt.instance;
+
+  static void setupDependencies() {
+    instance.registerSingleton<DiceService>(TwentySlidesDiceService());
+    instance.registerSingleton<ApiService>(AssetFileService());
   }
 }
